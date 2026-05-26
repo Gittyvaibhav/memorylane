@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { LogOut, Sparkles } from 'lucide-react'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
@@ -12,19 +13,26 @@ export default function Navbar() {
   }
 
   return (
-    <header className="bg-white shadow">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="font-semibold text-lg">MemoryLane</Link>
-        <nav className="space-x-4">
-          <Link to="/" className="text-sm text-gray-600">Home</Link>
-          <Link to="/dashboard" className="text-sm text-gray-600">Dashboard</Link>
+    <header className="app-header">
+      <div className="app-header-inner">
+        <Link to="/" className="brand" aria-label="MemoryLane home">
+          <span className="brand-mark"><Sparkles size={18} /></span>
+          <span>MemoryLane</span>
+        </Link>
+
+        <nav className="nav" aria-label="Primary navigation">
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
           {!user ? (
-            <Link to="/login" className="text-sm text-blue-600">Login</Link>
+            <Link to="/login" className="nav-link active">Login</Link>
           ) : (
-            <>
-              <span className="text-sm text-gray-700">{user.email}</span>
-              <button onClick={handleLogout} className="text-sm text-red-600">Logout</button>
-            </>
+            <div className="nav-user">
+              <span className="nav-pill">Signed in</span>
+              <span className="nav-user-email">{user.email}</span>
+              <button onClick={handleLogout} className="nav-button" type="button" aria-label="Logout">
+                <LogOut size={16} />
+              </button>
+            </div>
           )}
         </nav>
       </div>

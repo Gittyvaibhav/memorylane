@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Search } from 'lucide-react'
 
 export default function SearchBar({ onSearch, placeholder = 'Search files, receipts, screenshots...' }) {
   const [q, setQ] = useState('')
@@ -10,14 +11,17 @@ export default function SearchBar({ onSearch, placeholder = 'Search files, recei
   }
 
   return (
-    <form onSubmit={submit} className="flex gap-2">
+    <form onSubmit={submit} className="search-bar">
+      <div className="search-icon" aria-hidden="true">
+        <Search size={18} />
+      </div>
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 border rounded px-3 py-2"
+        className="search-input"
       />
-      <button type="submit" className="bg-blue-600 text-white px-4 rounded">Search</button>
+      <button type="submit" className="search-button">Search</button>
     </form>
   )
 }

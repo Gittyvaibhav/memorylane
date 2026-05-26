@@ -11,9 +11,9 @@ import ProtectedRoute from './components/ProtectedRoute'
 export default function App() {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-gray-50">
+      <div className="app-shell">
         <Navbar />
-        <main className="p-4 max-w-6xl mx-auto">
+        <main className="page">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
