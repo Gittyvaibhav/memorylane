@@ -1,4 +1,4 @@
-import { MeiliSearch } from 'meilisearch'
+import MeiliSearch from 'meilisearch'
 import dotenv from 'dotenv'
 
 dotenv.config()
