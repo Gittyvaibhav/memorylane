@@ -1,4 +1,4 @@
-import mongoose from '../../config/db.js'
+import mongoose from '../config/db.js'
 
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },

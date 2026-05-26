@@ -1,4 +1,4 @@
-import mongoose from '../../config/db.js'
+import mongoose from '../config/db.js'
 
 const FileSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
