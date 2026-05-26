@@ -3,3 +3,9 @@ dist/
 /.env
 /.env.local
 coverage/
+
+# Editor
+.vscode/
+
+# System
+.DS_Store
