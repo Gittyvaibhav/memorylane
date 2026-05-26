@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.2
+    environment:
+      - MEILI_NO_ANALYTICS=true
+    ports:
+      - '7700:7700'
+
+  redis:
+    image: redis:7
+    ports:
+      - '6379:6379'
+
+  backend:
+    build: ./backend
+    working_dir: /app
+    command: npm run dev
+    volumes:
+      - ./backend:/app
+    ports:
+      - '5000:5000'
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/memorylane
+      - REDIS_URL=redis://redis:6379
+      - MEILISEARCH_HOST=http://meilisearch:7700
+    depends_on:
+      - mongo
+      - meilisearch
+      - redis
+
+volumes:
+  mongo-data:
